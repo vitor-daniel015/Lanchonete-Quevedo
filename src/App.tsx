@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageCircle, MapPin, Clock, Star, Instagram, Facebook, ChefHat, NotebookPen} from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, MapPin, Clock, Star, Instagram, Facebook, ChefHat, NotebookPen } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,15 +56,14 @@ function App() {
   return (
     <div className="min-h-screen bg-amber-50">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 opacity-0 pointer-events-auto ${
-        scrolled ? 'bg-amber-100 shadow-lg opacity-100' : 'bg-transparent'
-      }`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 opacity-0 pointer-events-auto ${scrolled ? 'bg-amber-100 shadow-lg opacity-100' : 'bg-transparent'
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <img src="/images/logo2.png" alt="Logo" className='h-8 w-32'/>
+              <img src="/images/logo2.png" alt="Logo" className='h-8 w-32' />
             </div>
-            
+
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <a href="#home" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Início</a>
@@ -102,7 +101,7 @@ function App() {
 
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg?auto=compress&cs=tinysrgb&w=1600)',
@@ -110,16 +109,16 @@ function App() {
         >
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
-        
+
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
           <h1 className="text-5xl md:text-7xl font-bold font-serif mb-6 drop-shadow-lg">
             Quevedo's Lanchonete
           </h1>
           <p className="text-xl md:text-2xl mb-8 drop-shadow-md max-w-2xl mx-auto">
-            Sabores autênticos do interior paulista em Capela do Alto. 
+            Sabores autênticos do interior paulista em Capela do Alto.
             Pamonha, sopa de milho e delícias caipiras feitas com carinho.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2">
               <NotebookPen className="h-5 w-5" />
@@ -145,8 +144,8 @@ function App() {
               Tradição e Sabor
             </h2>
             <p className="text-lg text-amber-700 max-w-3xl mx-auto leading-relaxed">
-              Há anos servindo as melhores comidas típicas de Capela do Alto. Nossa lanchonete 
-              é um pedacinho do interior paulista, onde cada prato é preparado com ingredientes 
+              Há anos servindo as melhores comidas típicas de Capela do Alto. Nossa lanchonete
+              é um pedacinho do interior paulista, onde cada prato é preparado com ingredientes
               frescos e muito amor pela tradição culinária caipira.
             </p>
           </div>
@@ -169,8 +168,8 @@ function App() {
             {specialties.map((item, index) => (
               <div key={index} className="bg-amber-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="aspect-square overflow-hidden">
-                  <img 
-                    src={item.image} 
+                  <img
+                    src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                   />
@@ -245,7 +244,7 @@ function App() {
                 <div>
                   <h3 className="text-xl font-bold text-amber-800 mb-2">Endereço</h3>
                   <p className="text-amber-700">
-                    Rua Principal, 123<br />
+                    Rod. Ver. João Antônio Nunes<br />
                     Centro - Capela do Alto, SP<br />
                     CEP: 18195-000
                   </p>
@@ -277,8 +276,19 @@ function App() {
             </div>
 
             <div className="bg-amber-100 rounded-2xl p-8 text-center">
-              <div className="w-full h-64 bg-amber-200 rounded-xl flex items-center justify-center">
-                <p className="text-amber-700">Mapa da Localização</p>
+              <div className="w-full h-72 bg-amber-200 rounded-xl flex items-center justify-center">
+
+                <iframe
+                  className='w-full h-full rounded-xl'
+                  width="500px"
+                  height="450px"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed/v1/search?q=bar%20do%20nene%20-%20Capela%20do%20Alto&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                  title="Google Map"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -286,7 +296,7 @@ function App() {
       </section>
 
       {/* Delivery Section */}
-      <section id="delivery" className="py-20 bg-gradient-to-b from-amber-50 to-yellow-50">
+      {/* < section id="delivery" className="py-20 bg-gradient-to-b from-amber-50 to-yellow-50" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold font-serif text-amber-800 mb-6">
@@ -302,10 +312,10 @@ function App() {
               Atendemos Capela do Alto e Região
             </h3>
             <p className="text-amber-700 mb-8 text-lg">
-              Faça seu pedido pelo WhatsApp ou telefone. Taxa de entrega a partir de R$ 3,00. 
+              Faça seu pedido pelo WhatsApp ou telefone. Taxa de entrega a partir de R$ 3,00.
               Pedido mínimo de R$ 20,00 para delivery.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="bg-amber-50 p-6 rounded-xl">
                 <h4 className="font-bold text-amber-800 mb-2">Tempo de Entrega</h4>
@@ -319,7 +329,7 @@ function App() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
-              <img src="/images/whatsapp.png" alt="WhatsApp" className="h-5 w-5" />
+                <img src="/images/whatsapp.png" alt="WhatsApp" className="h-5 w-5" />
                 Pedir pelo WhatsApp
               </button>
               <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
@@ -329,10 +339,10 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </section > */}
 
       {/* Instagram Feed Section */}
-      <section className="py-20 bg-white">
+      < section className="py-20 bg-white" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold font-serif text-amber-800 mb-6">
@@ -342,15 +352,18 @@ function App() {
               Veja as últimas novidades e pratos especiais
             </p>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[...Array(8)].map((_, index) => (
-              <div key={index} className="aspect-square bg-amber-100 rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-                <div className="w-full h-full flex items-center justify-center">
-                  <Instagram className="h-8 w-8 text-amber-400" />
-                </div>
-              </div>
-            ))}
+          <div className="w-full rounded-xl page-container h-[430px] md:h-80  lg:h-[620px] mb-10">
+            <iframe
+              className='grid grid-cols-2 md:grid-cols-4 gap-4'
+              src="https://widget.tagembed.com/295382?website=1"
+              style={{
+                width: "100%",
+              height: "100%",
+              overflow: "auto",
+              border: "none"
+            }}
+            title="Tagembed Widget"
+          />
           </div>
 
           <div className="text-center mt-8">
@@ -362,10 +375,10 @@ function App() {
             </button>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Footer */}
-      <footer className="bg-amber-800 text-white py-12">
+      < footer className="bg-amber-800 text-white py-12" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
@@ -374,7 +387,7 @@ function App() {
                 <span className="text-2xl font-bold font-serif">Quevedo's Lanchonete</span>
               </div>
               <p className="text-amber-200">
-                Sabores autênticos do interior paulista desde sempre. 
+                Sabores autênticos do interior paulista desde sempre.
                 Tradição e qualidade em cada prato.
               </p>
             </div>
@@ -409,8 +422,8 @@ function App() {
             <p>&copy; 2025 Quevedo's Lanchonete. Todos os direitos reservados.</p>
           </div>
         </div>
-      </footer>
-    </div>
+      </footer >
+    </div >
   );
 }
 
