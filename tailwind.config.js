@@ -4,11 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'corn-yellow': '#FDB813',
-        'earth-brown': '#8B4513',
-        'warm-beige': '#F5E6D3',
-        'appetite-red': '#DC2626',
+        'primary': 'hsl(359, 94%, 26%)',
+        'secondary': 'hsl(48, 100%, 95%)',
+        'accent': 'hsl(48, 100%, 60%)',
+        'text': 'hsl(210, 22%, 18%)',
+        'background': 'hsl(210, 22%, 98%)',
       },
+
       fontFamily: {
         'serif': ['Playfair Display', 'serif'],
         'sans': ['Inter', 'sans-serif'],

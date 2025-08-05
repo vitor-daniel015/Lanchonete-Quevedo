@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageCircle, MapPin, Clock, Star, Instagram, Facebook, ChefHat } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, MapPin, Clock, Star, Instagram, Facebook, ChefHat, NotebookPen} from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,25 +18,25 @@ function App() {
       name: "Pamonha Tradicional",
       description: "Pamonha cremosa feita com milho fresco e temperos especiais, envolvida na palha do milho",
       price: "R$ 8,00",
-      image: "https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXe18LGdn5MjL9jeruNC3amP0YI4BdE-uS5MZwyt3kcG01byVtrjj0j_umJqWqRV-TlZ4&usqp=CAU"
     },
     {
       name: "Sopa de Milho",
       description: "Sopa cremosa de milho verde com pedaços de frango caipira e temperos da casa",
       price: "R$ 12,00",
-      image: "https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://static.itdg.com.br/images/1200-630/2434e5b8e20dd57576bcb61e07f25841/sopa-de-milho.jpg"
     },
     {
       name: "Bolinho Caipira",
       description: "Bolinhos crocantes de milho com queijo mineiro, fritos na hora",
       price: "R$ 6,00",
-      image: "https://images.pexels.com/photos/4198027/pexels-photo-4198027.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://scontent.fsod1-2.fna.fbcdn.net/v/t1.6435-9/167165029_4608054062555040_6036292343188839117_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=iPVKuYt7ZYoQ7kNvwHtjjvh&_nc_oc=AdkAeQ68HznEqyl-WbDUBW4DrSR7t5F5-5XE3yJa9TZL0LzZzbJuNssZEQmbXkKxmjE&_nc_zt=23&_nc_ht=scontent.fsod1-2.fna&_nc_gid=p67KExWgLd0h4REitIGh-g&oh=00_AfVZqHgtNExIAQiHWgQ9q86HcxodBuvKNsbGjs-MNkJM2g&oe=68B9C52D"
     },
     {
       name: "Pastel Caipira",
       description: "Pastel artesanal recheado com frango caipira, queijo e temperos especiais",
       price: "R$ 10,00",
-      image: "https://images.pexels.com/photos/4198018/pexels-photo-4198018.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://static.tvgazeta.com.br/uploads/2019/06/WhatsApp-Image-2019-06-05-at-11.54.36.jpeg"
     }
   ];
 
@@ -56,8 +56,8 @@ function App() {
   return (
     <div className="min-h-screen bg-amber-50">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-amber-100 shadow-lg' : 'bg-transparent'
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 opacity-0 pointer-events-auto ${
+        scrolled ? 'bg-amber-100 shadow-lg opacity-100' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
@@ -121,11 +121,12 @@ function App() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2">
+              <NotebookPen className="h-5 w-5" />
               Peça Agora
             </button>
             <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2">
-              <MessageCircle className="h-5 w-5" />
+              <img src="/images/whatsapp.png" alt="WhatsApp" className="h-5 w-5" />
               WhatsApp
             </button>
             <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2">
@@ -318,7 +319,7 @@ function App() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
-                <MessageCircle className="h-5 w-5" />
+              <img src="/images/whatsapp.png" alt="WhatsApp" className="h-5 w-5" />
                 Pedir pelo WhatsApp
               </button>
               <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
@@ -355,7 +356,9 @@ function App() {
           <div className="text-center mt-8">
             <button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 mx-auto">
               <Instagram className="h-5 w-5" />
-              @quevedoslanchonete
+              <a href="https://www.instagram.com/quevedos_lanchonete" target="_blank" rel="noopener noreferrer">
+                @quevedos_lanchonete
+              </a>
             </button>
           </div>
         </div>
