@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Phone, MessageCircle, MapPin, Clock, Star, Instagram, Facebook, ChefHat } from 'lucide-react';
 
 function App() {
