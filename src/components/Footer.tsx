@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChefHat, Instagram, Facebook, MessageCircle } from 'lucide-react';
 
 export function Footer() {
