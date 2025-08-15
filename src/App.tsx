@@ -56,48 +56,7 @@ function App() {
   return (
     <div className="min-h-screen bg-amber-50">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 opacity-0 pointer-events-auto ${scrolled ? 'bg-amber-100 shadow-lg opacity-100' : 'bg-transparent'
-        }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-2">
-              <img src="/images/logo2.png" alt="Logo" className='h-8 w-32' />
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Início</a>
-              <a href="#specialties" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Especialidades</a>
-              <a href="#menu" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Cardápio</a>
-              <a href="#location" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Localização</a>
-              <a href="#delivery" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Delivery</a>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-amber-800 hover:text-yellow-600 transition-colors"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden bg-amber-100 border-t border-amber-200">
-              <div className="py-4 space-y-2">
-                <a href="#home" className="block px-4 py-2 text-amber-800 hover:text-yellow-600 transition-colors">Início</a>
-                <a href="#specialties" className="block px-4 py-2 text-amber-800 hover:text-yellow-600 transition-colors">Especialidades</a>
-                <a href="#menu" className="block px-4 py-2 text-amber-800 hover:text-yellow-600 transition-colors">Cardápio</a>
-                <a href="#location" className="block px-4 py-2 text-amber-800 hover:text-yellow-600 transition-colors">Localização</a>
-                <a href="#delivery" className="block px-4 py-2 text-amber-800 hover:text-yellow-600 transition-colors">Delivery</a>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      
 
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -358,12 +317,12 @@ function App() {
               src="https://widget.tagembed.com/295382?website=1"
               style={{
                 width: "100%",
-              height: "100%",
-              overflow: "auto",
-              border: "none"
-            }}
-            title="Tagembed Widget"
-          />
+                height: "100%",
+                overflow: "auto",
+                border: "none"
+              }}
+              title="Tagembed Widget"
+            />
           </div>
 
           <div className="text-center mt-8">
@@ -378,51 +337,7 @@ function App() {
       </section >
 
       {/* Footer */}
-      < footer className="bg-amber-800 text-white py-12" >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <ChefHat className="h-8 w-8 text-yellow-400" />
-                <span className="text-2xl font-bold font-serif">Quevedo's Lanchonete</span>
-              </div>
-              <p className="text-amber-200">
-                Sabores autênticos do interior paulista desde sempre.
-                Tradição e qualidade em cada prato.
-              </p>
-            </div>
 
-            <div>
-              <h3 className="text-xl font-bold mb-4">Contato</h3>
-              <div className="space-y-2 text-amber-200">
-                <p>Telefone: (15) 3267-1234</p>
-                <p>WhatsApp: (15) 99999-9999</p>
-                <p>Rua Principal, 123 - Centro</p>
-                <p>Capela do Alto, SP</p>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold mb-4">Redes Sociais</h3>
-              <div className="flex space-x-4">
-                <button className="bg-amber-700 hover:bg-amber-600 p-3 rounded-full transition-colors">
-                  <Instagram className="h-5 w-5" />
-                </button>
-                <button className="bg-amber-700 hover:bg-amber-600 p-3 rounded-full transition-colors">
-                  <Facebook className="h-5 w-5" />
-                </button>
-                <button className="bg-amber-700 hover:bg-amber-600 p-3 rounded-full transition-colors">
-                  <MessageCircle className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-amber-700 mt-8 pt-8 text-center text-amber-200">
-            <p>&copy; 2025 Quevedo's Lanchonete. Todos os direitos reservados.</p>
-          </div>
-        </div>
-      </footer >
     </div >
   );
 }
