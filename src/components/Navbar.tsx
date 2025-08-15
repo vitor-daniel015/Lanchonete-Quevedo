@@ -1,18 +1,13 @@
-import { useState, useEffect } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Menu, X } from 'lucide-react';
 
-export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+interface NavbarProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
+  scrolled: boolean;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+export default function Navbar({ isMenuOpen, setIsMenuOpen, scrolled }: NavbarProps) {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
@@ -27,11 +22,11 @@ export function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Início</a>
-            <a href="#specialties" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Especialidades</a>
-            <a href="#menu" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Cardápio</a>
-            <a href="#location" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Localização</a>
-            <a href="#delivery" className="text-primary hover:text-yellow-600 transition-colors font-semibold">Delivery</a>
+            <a href="#home" className="text-amber-800 hover:text-yellow-600 transition-colors font-semibold">Início</a>
+            <a href="#specialties" className="text-amber-800 hover:text-yellow-600 transition-colors font-semibold">Especialidades</a>
+            <a href="#menu" className="text-amber-800 hover:text-yellow-600 transition-colors font-semibold">Cardápio</a>
+            <a href="#location" className="text-amber-800 hover:text-yellow-600 transition-colors font-semibold">Localização</a>
+            <a href="#delivery" className="text-amber-800 hover:text-yellow-600 transition-colors font-semibold">Delivery</a>
           </div>
 
           {/* Mobile menu button */}
