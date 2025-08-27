@@ -8,6 +8,7 @@ import Menu from './components/Menu/Menu.tsx';
 import Location from './components/Location/Location.tsx';
 import InstagramFeed from './components/InstagramFeed/InstagramFeed.tsx';
 import Footer from './components/Footer.tsx';
+import Timeline from './components/Timeline/Timeline.tsx';
 
 // Interfaces para tipagem dos dados
 interface Specialty {
@@ -89,6 +90,7 @@ function App() {
       <Specialties specialties={specialties} />
       <Menu menuItems={menuItems} />
       <Location />
+      <Timeline />
       <InstagramFeed />
       <Footer />
     </div>
