@@ -1,6 +1,6 @@
-import { Star } from 'lucide-react';
 import { useState } from 'react';
 import Timeline from '../Timeline/Timeline';
+import TimelinePamonha from '../Timeline/TimelinePamonha';
 
 // Interface para um item de especialidade
 interface Specialty {
@@ -55,12 +55,9 @@ function Specialties({ specialties }: SpecialtiesProps) {
                 <h3 className="text-xl font-bold font-serif text-amber-800 mb-2">{item.name}</h3>
                 <p className="text-amber-600 mb-4 text-sm leading-relaxed">{item.description}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-red-600">{item.price}</span>
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
+                  <span className="text-2xl font-bold text-red-600">
+                    {item.price}
+                  </span>
                 </div>
               </div>
             </div>
@@ -69,7 +66,7 @@ function Specialties({ specialties }: SpecialtiesProps) {
       </div>
 
       {/* Modal */}
-      {modalOpen && (
+      {modalOpen && selectedIndex !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full relative">
             <button
@@ -79,7 +76,7 @@ function Specialties({ specialties }: SpecialtiesProps) {
             >
               &times;
             </button>
-            <Timeline />
+            {selectedIndex === 0 ? <TimelinePamonha /> : <Timeline />}
           </div>
         </div>
       )}
