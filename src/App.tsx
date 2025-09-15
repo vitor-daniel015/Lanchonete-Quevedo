@@ -47,13 +47,13 @@ function App() {
       name: "Pamonha Tradicional",
       description: "Pamonha cremosa feita com milho fresco e temperos especiais, envolvida na palha do milho",
       price: "R$ 8,00",
-      image: "/public/images/pamonha.jpg"
+      image: "/images/Comidas/pamonha.jpg"
     },
     {
       name: "Sopa de Milho",
       description: "Sopa cremosa de milho verde com frango caipira e temperos da casa",
       price: "R$ 12,00",
-      image: "/public/images/sopaCompleta.jpg"
+      image: "/images/Comidas/sopaCompleta.jpg"
     },
     {
       name: "Bolinho Caipira",
