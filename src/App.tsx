@@ -4,6 +4,7 @@ import NavBar from './components/Navbar.tsx';
 import Hero from './components/Hero/Hero.tsx';
 import About from './components/About/About.tsx';
 import Specialties from './components/Specialties/Specialties.tsx';
+import StoryCarousel from './components/StoryCarousel/StoryCarousel.tsx';
 import Menu from './components/Menu/Menu.tsx';
 import Location from './components/Location/Location.tsx';
 import InstagramFeed from './components/InstagramFeed/InstagramFeed.tsx';
@@ -102,6 +103,7 @@ function App() {
       <Hero />
       <About />
       <Specialties specialties={specialties} />
+      <StoryCarousel />
       {/* <Timeline /> */}
       <Menu menuItems={menuItems} />
       <Location />
