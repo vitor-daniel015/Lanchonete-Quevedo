@@ -6,6 +6,8 @@ import {
   LinearProgress
 } from '@mui/material';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
 
@@ -23,35 +25,35 @@ const StoryCarousel: React.FC = () => {
   const storyData: StoryData[] = [
     { 
       id: 1, 
-      image: '/images/logo.png', 
+      image: '/images/CapelaDoAlto.jpg', 
       title: 'O Coração do Milho em Capela do Alto', 
       text: 'A Lanchonete Quevedo é reconhecida como o principal estabelecimento da região especializado em comidas de milho. Aqui, o milho não é apenas um ingrediente, é a nossa paixão e especialidade, transformado em pratos únicos que conquistam paladares de toda a região.',
       icon: <HomeIcon sx={{ color: '#d97706', fontSize: '2rem' }} />
     },
     { 
       id: 2, 
-      image: '/images/Comidas/pamonha.jpg', 
+      image: '/images/Comidas/pamonha1.jpg', 
       title: 'Mestres da Pamonha Tradicional', 
       text: 'Nossa pamonha é preparada artesanalmente com milho fresco selecionado, seguindo técnicas tradicionais que garantem aquela textura cremosa e sabor inconfundível. Cada pamonha é envolvida na palha do milho e cozida com o carinho que só a tradição caipira sabe oferecer.',
-      icon: <RestaurantIcon sx={{ color: '#d97706', fontSize: '2rem' }} />
+      icon: <LocalDiningIcon sx={{ color: '#d97706', fontSize: '2rem' }} />
     },
     { 
       id: 3, 
       image: '/images/Comidas/sopaCompleta.jpg', 
       title: 'Sopa de Milho que Aquece Corações', 
       text: 'Nossa famosa sopa de milho com frango caipira é o carro-chefe que atrai visitantes de cidades vizinhas. Cremosa, saborosa e preparada com ingredientes frescos da região, é o prato perfeito para qualquer momento do dia, especialmente nos dias mais frescos.',
-      icon: <RestaurantIcon sx={{ color: '#d97706', fontSize: '2rem' }} />
+      icon: <FavoriteIcon sx={{ color: '#d97706', fontSize: '2rem' }} />
     },
     { 
       id: 4, 
-      image: '/images/Comidas/sopa.JPG', 
+      image: '/images/Comidas/SalgadoMilho.jpg', 
       title: 'Tradição em Cada Bolinho e Pastel', 
       text: 'Nossos bolinhos caipiras crocantes e pastéis artesanais mantêm a autenticidade da culinária do interior paulista. Cada mordida é uma explosão de sabor que remete às receitas tradicionais, preparadas com ingredientes de qualidade e muito amor pela gastronomia caipira.',
       icon: <RestaurantIcon sx={{ color: '#d97706', fontSize: '2rem' }} />
     },
     { 
       id: 5, 
-      image: '/images/Comidas/pamonha.jpg', 
+      image: '/images/Lanchonete.png', 
       title: 'O Destino Gastronômico da Região', 
       text: 'Somos mais que uma lanchonete - somos um patrimônio gastronômico de Capela do Alto. Quando alguém busca a verdadeira comida de milho da região, sabe que encontrará aqui a qualidade, sabor e tradição que fazem da nossa mesa um pedacinho autêntico do interior paulista.',
       icon: <StarIcon sx={{ color: '#d97706', fontSize: '2rem' }} />
@@ -111,7 +113,7 @@ const StoryCarousel: React.FC = () => {
     >
       {/* Container sticky que fixa o carrossel na tela */}
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Container flexível das imagens com animação suave */}
+        {/* Container flexível das imagens */}
         <div 
           ref={carouselRef}
           className="flex h-full transition-transform duration-300 ease-out"
@@ -120,71 +122,95 @@ const StoryCarousel: React.FC = () => {
           {storyData.map((story) => (
             <div 
               key={story.id} 
-              className="relative w-screen h-full flex-shrink-0"
+              className="relative w-screen h-full flex-shrink-0 flex"
             >
-              {/* Imagem com efeito */}
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-transparent"></div>
-              <img
-                src={story.image}
-                alt={story.title}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-              
-              {/* Overlay com gradiente sofisticado */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-transparent to-amber-900/20" />
-              
-              {/* Conteúdo de texto melhorado com MUI Stepper - Posicionado inferior direita */}
-              <div className="absolute bottom-8 right-8 z-10 max-w-2xl w-full">
-                <div className="text-left">
-                  {/* Card maior com conteúdo e stepper */}
+              {/* LADO ESQUERDO - Imagem bem ajustada ocupando 60% */}
+              <div className="w-3/5 h-full relative overflow-hidden flex items-center justify-center p-8 bg-gradient-to-br from-amber-100 via-yellow-50 to-amber-200">
+                {/* Container da imagem com proporções controladas */}
+                <div className="relative w-full h-full max-w-2xl max-h-full flex items-center justify-center">
+                  {/* Efeito de fotografia impressa */}
+                  <div className="relative bg-white p-6 shadow-2xl rounded-lg transform rotate-1 hover:rotate-0 transition-transform duration-700 border-4 border-black">
+                    {/* Bordas internas da foto */}
+                    <div className="relative bg-gray-100 p-2 shadow-inner ">
+                      <img
+                        src={story.image}
+                        alt={story.title}
+                        className="max-w-full max-h-full object-cover rounded-sm transition-all duration-700 hover:scale-105 border border-black"
+                        style={{
+                          filter: 'brightness(1.05) contrast(1.1) saturate(1.2) sepia(0.1)',
+                          aspectRatio: '4/3',
+                          width: 'auto',
+                          height: 'auto',
+                          maxWidth: '500px',
+                          maxHeight: '400px'
+                        }}
+                      />
+                      
+                      {/* Reflexo da foto */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none rounded-sm"></div>
+                      
+                      {/* Sombra interna da moldura */}
+                      <div className="absolute inset-0 shadow-inner rounded-sm pointer-events-none"></div>
+                    </div>
+                    
+                    {/* Sombra da foto no fundo */}
+                    <div className="absolute -inset-2 bg-black/10 rounded-lg -z-10 blur-sm"></div>
+                  </div>
+                </div>
+                
+                {/* Overlay gradiente suave apenas para transição com cores do site */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-amber-900/30 pointer-events-none" />
+              </div>
+
+              {/* LADO DIREITO - História ocupando 40% da tela */}
+              <div className="w-2/5 h-full bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 flex items-center justify-center p-8">
+                <div className="w-full max-w-lg">
                   <Paper 
-                    elevation={12}
+                    elevation={8}
                     sx={{ 
-                      background: 'linear-gradient(145deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 100%)',
-                      backdropFilter: 'blur(15px)',
-                      borderRadius: '20px',
-                      border: '2px solid rgba(251, 191, 36, 0.4)',
+                      background: 'linear-gradient(145deg, #ffffff 0%, #fef3c7 100%)',
+                      borderRadius: '24px',
+                      border: '2px solid #f59e0b',
                       p: 4,
-                      maxWidth: '600px',
-                      boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                      boxShadow: '0 20px 40px rgba(245, 158, 11, 0.2)',
+                      height: 'auto',
+                      maxHeight: '90vh',
+                      overflow: 'auto'
                     }}
                   >
+                    {/* Ícone e indicador */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, justifyContent: 'center' }}>
+                      {React.cloneElement(story.icon as React.ReactElement, { 
+                        sx: { color: '#d97706', fontSize: '3rem', mr: 2 } 
+                      })}
+                      <Typography 
+                        variant="h6" 
+                        sx={{ 
+                          color: '#92400e',
+                          fontWeight: 'bold',
+                          fontSize: '1.2rem'
+                        }}
+                      >
+                        {story.id} de {storyData.length}
+                      </Typography>
+                    </Box>
+
                     {/* Título */}
                     <Typography 
-                      variant="h4" 
-                      component="h3" 
+                      variant="h3" 
+                      component="h2" 
                       sx={{ 
-                        fontSize: { xs: '1.5rem', md: '2rem' },
+                        fontSize: { xs: '1.8rem', md: '2.5rem' },
                         fontWeight: 'bold',
                         mb: 3,
-                        textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
                         fontFamily: '"Playfair Display", serif',
-                        color: '#fbbf24',
-                        lineHeight: 1.3
+                        color: '#92400e',
+                        lineHeight: 1.2,
+                        textAlign: 'center'
                       }}
                     >
                       {story.title}
                     </Typography>
-
-                    {/* Ícone e indicador de progresso */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, justifyContent: 'space-between' }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        {React.cloneElement(story.icon as React.ReactElement, { 
-                          sx: { color: '#fbbf24', fontSize: '1.8rem', mr: 2 } 
-                        })}
-                        <Typography 
-                          variant="h6" 
-                          sx={{ 
-                            color: '#fef3c7',
-                            fontWeight: 'bold',
-                            fontSize: '1.1rem'
-                          }}
-                        >
-                          {story.id} de {storyData.length}
-                        </Typography>
-                      </Box>
-                    </Box>
 
                     {/* Progress bar */}
                     <LinearProgress 
@@ -193,60 +219,50 @@ const StoryCarousel: React.FC = () => {
                       sx={{
                         height: 8,
                         borderRadius: 4,
-                        mb: 3,
+                        mb: 4,
                         '& .MuiLinearProgress-bar': {
                           background: 'linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%)',
                           borderRadius: 4,
                         },
-                        backgroundColor: 'rgba(255,255,255,0.2)',
+                        backgroundColor: '#fef3c7',
                       }}
                     />
                     
-                    {/* Texto principal maior */}
+                    {/* Texto principal */}
                     <Typography 
                       variant="body1" 
                       sx={{ 
-                        fontSize: { xs: '1rem', md: '1.2rem' },
-                        lineHeight: 1.6,
-                        color: '#fef3c7',
-                        textAlign: 'left',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+                        fontSize: { xs: '1.1rem', md: '1.3rem' },
+                        lineHeight: 1.7,
+                        color: '#92400e',
+                        textAlign: 'justify',
                         fontWeight: 400,
-                        mb: 3
+                        mb: 4
                       }}
                     >
                       {story.text}
                     </Typography>
 
-                    {/* Indicadores horizontais */}
-                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5 }}>
+                    {/* Indicadores */}
+                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
                       {storyData.map((step, index) => (
                         <Box
                           key={step.id}
                           sx={{
-                            width: 10,
-                            height: 10,
+                            width: 12,
+                            height: 12,
                             borderRadius: '50%',
                             backgroundColor: index < story.id - 1 ? '#f59e0b' : 
-                                           index === story.id - 1 ? '#fbbf24' : 'rgba(255,255,255,0.3)',
+                                           index === story.id - 1 ? '#fbbf24' : '#fef3c7',
+                            border: '2px solid #d97706',
                             transition: 'all 0.3s ease',
-                            transform: index === story.id - 1 ? 'scale(1.3)' : 'scale(1)',
+                            transform: index === story.id - 1 ? 'scale(1.4)' : 'scale(1)',
                           }}
                         />
                       ))}
                     </Box>
                   </Paper>
                 </div>
-              </div>
-              
-              {/* Elemento decorativo de canto */}
-              <div className="absolute top-6 left-6 z-20">
-                <div className="w-16 h-16 border-l-4 border-t-4 border-amber-400/60 rounded-tl-xl"></div>
-              </div>
-              
-              {/* Elemento decorativo de canto oposto */}
-              <div className="absolute bottom-6 left-6 z-20">
-                <div className="w-16 h-16 border-l-4 border-b-4 border-amber-400/60 rounded-bl-xl"></div>
               </div>
             </div>
           ))}
