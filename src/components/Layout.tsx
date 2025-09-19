@@ -1,6 +1,6 @@
 import NavBar from './Navbar';
 import Footer from './Footer';
-import { navbarPropsData } from "/Documents and Settings/Usuario/Downloads/Lanchonete Quevedo/src/lib/data.ts";
+import { navbarPropsData } from "../lib/data";
 
 import { Outlet } from "react-router-dom";
 
