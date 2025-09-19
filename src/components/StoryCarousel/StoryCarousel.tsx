@@ -1,9 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { 
   Typography, 
   Box, 
   Paper,
-  LinearProgress
+  LinearProgress,
+  useMediaQuery,
+  useTheme
 } from '@mui/material';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
@@ -21,6 +23,10 @@ interface StoryData {
 }
 
 const StoryCarousel: React.FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   // Dados das imagens e histórias com ícones
   const storyData: StoryData[] = [
     { 
@@ -67,30 +73,51 @@ const StoryCarousel: React.FC = () => {
   useEffect(() => {
     // Função que será executada no evento de scroll
     const handleScroll = () => {
-      if (!containerRef.current || !carouselRef.current) return;
+      if (!containerRef.current) return;
 
-      // Obter dimensões e posições
-      const container = containerRef.current;
-      const carousel = carouselRef.current;
-      const rect = container.getBoundingClientRect();
-      const containerHeight = container.offsetHeight;
-      const windowHeight = window.innerHeight;
+      if (isMobile) {
+        // Lógica para mobile - scroll automático baseado na posição da tela
+        const container = containerRef.current;
+        const rect = container.getBoundingClientRect();
+        const containerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
 
-      // Calcular o progresso da rolagem
-      // Quando o topo do container atinge o topo da tela, progresso = 0
-      // Quando o bottom do container atinge o bottom da tela, progresso = 1
-      const scrollStart = -rect.top;
-      const scrollEnd = containerHeight - windowHeight;
-      const scrollProgress = Math.max(0, Math.min(1, scrollStart / scrollEnd));
+        // Calcular o progresso da rolagem
+        const scrollStart = -rect.top;
+        const scrollEnd = containerHeight - windowHeight;
+        const scrollProgress = Math.max(0, Math.min(1, scrollStart / scrollEnd));
 
-      // Calcular a distância total que o carrossel deve percorrer
-      const carouselWidth = carousel.scrollWidth;
-      const visibleWidth = window.innerWidth;
-      const maxTranslateX = carouselWidth - visibleWidth;
+        // Calcular qual slide mostrar baseado no progresso
+        const slideIndex = Math.floor(scrollProgress * (storyData.length - 1));
+        const clampedIndex = Math.max(0, Math.min(storyData.length - 1, slideIndex));
+        
+        if (clampedIndex !== currentSlide) {
+          setCurrentSlide(clampedIndex);
+        }
+      } else {
+        // Lógica original para desktop
+        if (!carouselRef.current) return;
+        
+        const container = containerRef.current;
+        const carousel = carouselRef.current;
+        const rect = container.getBoundingClientRect();
+        const containerHeight = container.offsetHeight;
+        const windowHeight = window.innerHeight;
 
-      // Aplicar a transformação baseada no progresso da rolagem
-      const translateX = scrollProgress * maxTranslateX;
-      carousel.style.transform = `translateX(-${translateX}px)`;
+        // Calcular o progresso da rolagem
+        const scrollStart = -rect.top;
+        const scrollEnd = containerHeight - windowHeight;
+        const scrollProgress = Math.max(0, Math.min(1, scrollStart / scrollEnd));
+
+        // Calcular a distância total que o carrossel deve percorrer
+        const carouselWidth = carousel.scrollWidth;
+        const visibleWidth = window.innerWidth;
+        const maxTranslateX = carouselWidth - visibleWidth;
+
+        // Aplicar a transformação baseada no progresso da rolagem
+        const translateX = scrollProgress * maxTranslateX;
+        carousel.style.transform = `translateX(-${translateX}px)`;
+      }
     };
 
     // Adicionar o event listener
@@ -103,8 +130,156 @@ const StoryCarousel: React.FC = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMobile, currentSlide, storyData.length]);
 
+  // Renderização da versão mobile
+  const renderMobileVersion = () => {
+    const currentStory = storyData[currentSlide];
+    
+    return (
+      <div 
+        ref={containerRef}
+        className="relative"
+        style={{ height: `${300}vh` }} // Mesma altura da versão desktop para scroll
+      >
+        {/* Container sticky que fixa o conteúdo na tela */}
+        <div className="sticky top-0 h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 flex flex-col">
+          {/* Header com indicador de progresso */}
+          <div className="relative z-10 p-4 bg-white/90 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-2">
+              <Typography 
+                variant="h6" 
+                sx={{ 
+                  color: '#92400e',
+                  fontWeight: 'bold'
+                }}
+              >
+                {currentSlide + 1} de {storyData.length}
+              </Typography>
+              
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                {React.cloneElement(currentStory.icon as React.ReactElement, { 
+                  sx: { color: '#d97706', fontSize: '1.5rem' } 
+                })}
+              </Box>
+            </div>
+            
+            {/* Progress bar */}
+            <LinearProgress 
+              variant="determinate" 
+              value={((currentSlide + 1) / storyData.length) * 100}
+              sx={{
+                height: 6,
+                borderRadius: 3,
+                '& .MuiLinearProgress-bar': {
+                  background: 'linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%)',
+                  borderRadius: 3,
+                },
+                backgroundColor: '#fef3c7',
+              }}
+            />
+          </div>
+
+          {/* Imagem - ocupa mais espaço */}
+          <div className="flex-1 overflow-hidden flex items-center justify-center p-4">
+            <div className="relative w-full max-w-sm">
+              <div className="relative bg-white p-4 shadow-2xl rounded-lg border-4 border-black">
+                <div className="relative bg-gray-100 p-2 shadow-inner border-2 border-black">
+                  <img
+                    src={currentStory.image}
+                    alt={currentStory.title}
+                    className="w-full h-56 object-cover rounded-sm border border-black"
+                    style={{
+                      filter: 'brightness(1.05) contrast(1.1) saturate(1.2) sepia(0.1)'
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none rounded-sm"></div>
+                  <div className="absolute inset-0 shadow-inner rounded-sm pointer-events-none"></div>
+                </div>
+                <div className="absolute -inset-2 bg-black/10 rounded-lg -z-10 blur-sm"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Conteúdo da história - parte inferior */}
+          <div className="px-4 pb-4 flex-shrink-0">
+            <Paper 
+              elevation={8}
+              sx={{ 
+                background: 'linear-gradient(145deg, #ffffff 0%, #fef3c7 100%)',
+                borderRadius: '20px',
+                border: '2px solid #f59e0b',
+                p: 3,
+                boxShadow: '0 15px 30px rgba(245, 158, 11, 0.2)',
+                maxHeight: '40vh',
+                overflow: 'auto'
+              }}
+            >
+              {/* Título */}
+              <Typography 
+                variant="h4" 
+                component="h2" 
+                sx={{ 
+                  fontSize: '1.4rem',
+                  fontWeight: 'bold',
+                  mb: 2,
+                  fontFamily: '"Playfair Display", serif',
+                  color: '#92400e',
+                  lineHeight: 1.3,
+                  textAlign: 'center'
+                }}
+              >
+                {currentStory.title}
+              </Typography>
+              
+              {/* Texto principal */}
+              <Typography 
+                variant="body1" 
+                sx={{ 
+                  fontSize: '0.95rem',
+                  lineHeight: 1.6,
+                  color: '#92400e',
+                  textAlign: 'justify',
+                  fontWeight: 400,
+                  mb: 3
+                }}
+              >
+                {currentStory.text}
+              </Typography>
+
+              {/* Indicadores */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.5 }}>
+                {storyData.map((_, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: '50%',
+                      backgroundColor: index === currentSlide ? '#f59e0b' : '#fef3c7',
+                      border: '2px solid #d97706',
+                      transition: 'all 0.3s ease',
+                      transform: index === currentSlide ? 'scale(1.3)' : 'scale(1)',
+                    }}
+                  />
+                ))}
+              </Box>
+            </Paper>
+          </div>
+        </div>
+        
+        {/* Div espaçador para criar área de rolagem adicional */}
+        <div className="h-screen bg-transparent" />
+      </div>
+    );
+  };
+
+  // Renderizar versão apropriada
+  if (isMobile) {
+    return renderMobileVersion();
+  }
+
+  // Versão Desktop
   return (
     <div 
       ref={containerRef}
